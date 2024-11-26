@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "O//W3dyD03o=",
+  "dgSpecHash": "KSITMPG8vrA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Selahattin\\PostgresApp\\PostgresApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Selahattin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\Selahattin\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\Selahattin\\.nuget\\packages\\npgsql\\9.0.1\\npgsql.9.0.1.nupkg.sha512"
+    "C:\\Users\\Selahattin\\.nuget\\packages\\npgsql\\9.0.1\\npgsql.9.0.1.nupkg.sha512",
+    "C:\\Users\\Selahattin\\.nuget\\packages\\system.io.pipelines\\9.0.0\\system.io.pipelines.9.0.0.nupkg.sha512",
+    "C:\\Users\\Selahattin\\.nuget\\packages\\system.text.encodings.web\\9.0.0\\system.text.encodings.web.9.0.0.nupkg.sha512",
+    "C:\\Users\\Selahattin\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512"
   ],
   "logs": []
 }

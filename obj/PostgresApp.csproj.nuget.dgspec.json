@@ -52,6 +52,10 @@
             "Npgsql": {
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
