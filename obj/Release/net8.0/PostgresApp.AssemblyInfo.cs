@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PostgresApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccb43ecbbee5ad96632bab82c9e0f03189d7521d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4e8438cf0f5de3af78a3ad313e373bf93dab782")]
 [assembly: System.Reflection.AssemblyProductAttribute("PostgresApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PostgresApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
