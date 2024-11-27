@@ -17,11 +17,9 @@ string dbPassword = secretClient.GetSecret("db-password").Value.Value;
 
 string connectionString = $"Host={dbHost}; Database=testdb; Port=5432; User Id={dbUsername}; Password={dbPassword}; Ssl Mode=Require;";
 
-builder.Services.AddTransient<NpgsqlConnection>(sp => new NpgsqlConnection(connectionString));
-
 var app = builder.Build();
 
-app.MapGet("/hello", async (NpgsqlConnection dbConnection) =>
+    app.MapGet("/hello", async (NpgsqlConnection dbConnection) =>
 {
     try
     {
