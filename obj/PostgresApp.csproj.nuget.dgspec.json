@@ -49,13 +49,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.13.1, )"
+            },
+            "Azure.Security.KeyVault.Keys": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Azure.Security.KeyVault.Secrets": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[9.0.1, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[8.0.0, )"
             }
           },
           "imports": [
