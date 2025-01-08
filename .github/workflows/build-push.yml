@@ -13,10 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Login to Azure with Managed Identity
-      run: |
-        az login --identity
-        az account set --subscription "dcb89f55-2abd-4e51-942a-7763f17a4935"
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Build and Push Docker Image to ACR
       run: |
@@ -31,6 +31,7 @@ jobs:
           --resource-group appservice-acr-demo-rg \
           --docker-custom-image-name acr3545.azurecr.io/postgres-app:${{ github.sha }} \
           --docker-registry-server-url https://acr3545.azurecr.io
+
     - name: Restart Azure App Service
       run: |
         az webapp restart \
