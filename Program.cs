@@ -17,10 +17,17 @@ string dbPassword = secretClient.GetSecret("db-password").Value.Value;
 
 string connectionString = $"Host={dbHost}; Database=testdb; Port=5432; User Id={dbUsername}; Password={dbPassword}; Ssl Mode=Require;";
 
+builder.Services.AddTransient<NpgsqlConnection>(sp =>
+{
+    return new NpgsqlConnection(connectionString);
+});
+
 var app = builder.Build();
 
-    app.MapGet("/hello", async (NpgsqlConnection dbConnection) =>
+// /hello endpoint'i
+app.MapGet("/hello", async (IServiceProvider serviceProvider) =>
 {
+    using var dbConnection = serviceProvider.GetRequiredService<NpgsqlConnection>();
     try
     {
         await dbConnection.OpenAsync();
@@ -30,10 +37,8 @@ var app = builder.Build();
     {
         return Results.Problem($"Connection error: {ex.Message}");
     }
-    finally
-    {
-        await dbConnection.CloseAsync();
-    }
 });
 
 app.Run();
+
+// new app feature
