@@ -1,4 +1,4 @@
-name: Build Docker Image and Deploy to App Service
+name: Build and Deploy to Azure App Service
 
 on:
   push:
@@ -13,27 +13,26 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Sign in to Azure
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Login to Azure with Managed Identity
+      run: |
+        az login --identity
+        az account set --subscription "dcb89f55-2abd-4e51-942a-7763f17a4935"
 
-    - name: Build & Push to Azure Container Registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: acr3545.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: |
-        docker build . -t acr3545.azurecr.io/postgres-app:${{ github.sha }}
+    - name: Build and Push Docker Image to ACR
+      run: |
+        docker build -t acr3545.azurecr.io/postgres-app:${{ github.sha }} .
+        az acr login --name acr3545
         docker push acr3545.azurecr.io/postgres-app:${{ github.sha }}
 
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'as1240958'
-        images: 'acr3545.azurecr.io/postgres-app:${{ github.sha }}'
-
-    # 5. Azure'dan Çıkış Yap
-    - run: |
-        az logout
+    - name: Deploy Docker Image to Azure App Service
+      run: |
+        az webapp config container set \
+          --name as1240958 \
+          --resource-group appservice-acr-demo-rg \
+          --docker-custom-image-name acr3545.azurecr.io/postgres-app:${{ github.sha }} \
+          --docker-registry-server-url https://acr3545.azurecr.io
+    - name: Restart Azure App Service
+      run: |
+        az webapp restart \
+          --name as1240958 \
+          --resource-group appservice-acr-demo-rg
